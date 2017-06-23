@@ -1,0 +1,16 @@
+amqp==2.1.4
+billiard==3.5.0.2
+celery==4.0.2
+certifi==2017.4.17
+chardet==3.0.4
+idna==2.5
+iotop==0.6
+ipaddr==2.1.11
+iso8601==0.1.11
+kombu==4.0.2
+m3u8==0.3.2
+pytz==2017.2
+redis==2.10.5
+requests==2.18.1
+urllib3==1.21.1
+vine==1.1.3
