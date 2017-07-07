@@ -14,22 +14,24 @@ def downloadSegments(plist_data, file_list, dest_dir):
         return
 
     segments = plist_data['plist_array'].segments
-
+    media_seq = int(plist_data['plist_array'].media_sequence)
     latest_datetime_str = datetime.now().strftime("%Y%m%d-%H-%M-%S-%f")
 
     # Download segments
     for item in segments:
         if not file_list.get( item.uri ):
             ts_url = helper.validateReturnURL( plist_data['plist_url'], item.uri )
-            dest_file = ts_url.rsplit('/', 1)[-1]
+            dest_file = str(media_seq) + '.ts'
 
             # print(ts_url)
             # print(os.path.join(dest_dir, dest_file))
 
             download_file_by_curl.apply_async((ts_url, os.path.join(dest_dir, dest_file)), expires=120)
 
-            file_list[item.uri] = item.uri
+            file_list[item.uri] = media_seq
 
+        media_seq += 1
+        
     # Download keys
     for key in plist_data['plist_array'].keys:
         if key:  # First one could be None
