@@ -61,7 +61,7 @@ def main():
         plist_extr = indexPListExtr(dest_url, cfgMgr.logger)
         ret_plist = plist_extr.retrieveAndProcess()
 
-        if not ret_plist:
+        if not isinstance(ret_plist, dict):
             time.sleep(cfgMgr.fileduration)
             continue
 
